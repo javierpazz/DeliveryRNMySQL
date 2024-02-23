@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { View, Text, Dimensions,FlatList } from 'react-native';
+import { View, Text, Dimensions } from 'react-native';
 import { StackScreenProps } from '@react-navigation/stack';
 import { ClientStackParamList } from '../../../../navigator/ClientStackNavigator';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
@@ -19,45 +19,33 @@ export const ClientCategoryListScreen = ({navigation, route}: Props) => {
 
   useEffect(() => {
     getCategories();
-    console.log('llegue');
-    
   }, [])
+  
 
   return (
-    <View style={{ backgroundColor: 'white'}}>
-        <FlatList
+    <GestureHandlerRootView style={{ flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: 'white' }}>
+      <View style={{
+        position: 'absolute',
+        alignSelf: 'center',
+        top: height * 0.1
+      }}>
+
+        <Carousel
+          loop={false}
+          width={width}
+          height={height}
+          autoPlay={false}
           data={ categories }
-          keyExtractor={ (item) => item.id! }
-          // renderItem={ ({item}) =>  <AdminCategoryListItem category={item} remove={deleteCategory} />}
+          scrollAnimationDuration={1000}
+          // onSnapToItem={(index) => console.log('current index:', index)}
           renderItem={ ({item}) => <ClientCategoryItem category={ item } height={ height * 0.62 } width={ width - 70 } navigation={navigation}/>}
-/>
-    </View>
-  )  
-
-  // return (
-  //   <GestureHandlerRootView style={{ flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: 'white' }}>
-  //     <View style={{
-  //       position: 'absolute',
-  //       alignSelf: 'center',
-  //       top: height * 0.1
-  //     }}>
-
-  //       <Carousel
-  //         loop={false}
-  //         width={width}
-  //         height={height}
-  //         autoPlay={false}
-  //         data={ categories }
-  //         scrollAnimationDuration={1000}
-  //         // onSnapToItem={(index) => console.log('current index:', index)}
-  //         renderItem={ ({item}) => <ClientCategoryItem category={ item } height={ height * 0.62 } width={ width - 70 } navigation={navigation}/>}
-  //         modeConfig={{
-  //           snapDirection,
-  //           stackInterval: 40
-  //         }}
-  //         mode={mode}
-  //         />
-  //     </View>
-  //   </GestureHandlerRootView>
-  // )
+          modeConfig={{
+            snapDirection,
+            stackInterval: 40
+          }}
+          mode={mode}
+          />
+      </View>
+    </GestureHandlerRootView>
+  )
 }

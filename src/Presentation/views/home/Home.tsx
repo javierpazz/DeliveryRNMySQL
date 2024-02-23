@@ -42,8 +42,8 @@ export const HomeScreen = ({navigation, route}: Props) => {
                 // console.log('TOKEN: ' + token);
 
                 // updateNotificationToken(user?.id!, token!);
-                
-                if (user.roles?.length! > 1) {
+
+                if (user.roles?.length! > 0) {
                     navigation.replace('RolesScreen');
                 }
                 else {
@@ -54,17 +54,17 @@ export const HomeScreen = ({navigation, route}: Props) => {
     
             // // This listener is fired whenever a notification is received while the app is foregrounded
             // notificationListener.current = Notifications.addNotificationReceivedListener(notification => {
-            //     setNotification(notification);
+                //     setNotification(notification);
             // });
     
             // // This listener is fired whenever a user taps on or interacts with a notification (works when app is foregrounded, backgrounded, or killed)
             // responseListener.current = Notifications.addNotificationResponseReceivedListener(response => {
-            //     console.log(response);
+                //     console.log(response);
             // });
     
             // return () => {
-            //     Notifications.removeNotificationSubscription(notificationListener.current);
-            //     Notifications.removeNotificationSubscription(responseListener.current);
+                //     Notifications.removeNotificationSubscription(notificationListener.current);
+                //     Notifications.removeNotificationSubscription(responseListener.current);
             // };
         }
     }, [user])
